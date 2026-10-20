@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal de Ingreso | CESBA Sistemas</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --accent: #0ea5e9;
+            --text-light: #f1f5f9;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+        }
+
+        body { 
+            background: var(--bg-dark); 
+            color: var(--text-light); 
+            font-family: 'Courier New', Courier, monospace; 
+            padding: 5vh 5vw; 
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container { 
+            width: 100%;
+            max-width: 500px; 
+            background: var(--card-bg); 
+            padding: 35px 25px; 
+            border-radius: 12px; 
+            border: 1px solid #334155; 
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.15); 
+            height: fit-content;
+        }
+
+        h2 { 
+            color: var(--accent); 
+            text-align: center; 
+            margin-top: 0;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+            border-bottom: 1px dashed #334155;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        label { 
+            display: block; 
+            margin-top: 20px; 
+            color: var(--text-light); 
+            font-weight: bold; 
+            font-size: 0.95rem;
+        }
+
+        select, input[type="text"] { 
+            width: 100%; 
+            padding: 12px; 
+            margin-top: 8px; 
+            background: var(--bg-dark); 
+            border: 1px solid #475569; 
+            color: var(--text-light); 
+            border-radius: 6px; 
+            font-family: inherit;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        select:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 8px rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-submit { 
+            width: 100%; 
+            padding: 16px; 
+            margin-top: 30px; 
+            background: var(--accent); 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            font-size: 1.1rem;
+            cursor: pointer; 
+            transition: background 0.3s; 
+            font-family: inherit;
+        }
+
+        .btn-submit:hover { 
+            background: #0284c7; 
+        }
+
+        .success-msg {
+            display: none; 
+            text-align: center; 
+            margin-top: 30px; 
+            color: var(--success); 
+        }
+        
+        .success-msg svg {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>>_ CESBA.sys // Ingreso</h2>
+        
+        <form id="techForm">
+            <label>1. Stack de programación de interés:</label>
+            <select id="p1" name="p1" required>
+                <option value="">Selecciona una opción...</option>
+                <option value="A) Python / Datos">A) Python / Analítica de Datos</option>
+                <option value="B) JavaScript / Web">B) JavaScript / Desarrollo Web</option>
+                <option value="C) C++ / Java / Software">C) C++ / Java / Software Base</option>
+            </select>
+
+            <label>2. Área de especialidad deseada:</label>
+            <select id="p2" name="p2" required>
+                <option value="">Selecciona una opción...</option>
+                <option value="A) Videojuegos y Apps">A) Videojuegos y Apps Móviles</option>
+                <option value="B) Inteligencia Artificial">B) Inteligencia Artificial / Machine Learning</option>
+                <option value="C) Ciberseguridad">C) Ciberseguridad y Redes</option>
+            </select>
+
+            <label>3. Idea de App (Si pudieras programar algo hoy, ¿qué problema resolverías?):</label>
+            <input type="text" id="p3" name="p3" placeholder="Ej. Un bot que organice mis tareas..." required autocomplete="off">
+
+            <button type="submit" id="btnSubmit" class="btn-submit">Ejecutar Comando [ENTER]</button>
+        </form>
+
+        <div id="mensaje" class="success-msg">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <h3>¡Datos inyectados en la DB!</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Payload recibido correctamente en el servidor central. Ya puedes mirar al frente.</p>
+        </div>
+    </div>
+
+    <script>
+        // API Oficial Conectada
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzO5m8pC0fdbdDxfj-xvqb-uzEcFkCwFHlv-y4HEdKBpUkA9klF9D3oziI6ShcYcLw/exec"; 
+
+        document.getElementById('techForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnSubmit');
+            btn.innerText = "Compilando... _";
+            btn.disabled = true;
+            btn.style.background = "#475569";
+
+            const formData = new FormData();
+            formData.append('p1', document.getElementById('p1').value);
+            formData.append('p2', document.getElementById('p2').value);
+            formData.append('p3', document.getElementById('p3').value);
+
+            // POST a Google Apps Script
+            fetch(SCRIPT_URL, { 
+                method: 'POST', 
+                body: formData, 
+                mode: 'no-cors' 
+            })
+            .then(() => {
+                document.getElementById('techForm').style.display = 'none';
+                document.getElementById('mensaje').style.display = 'block';
+            })
+            .catch(err => {
+                alert("Error de conexión al servidor. Intenta nuevamente.");
+                btn.innerText = "Ejecutar Comando [ENTER]";
+                btn.disabled = false;
+                btn.style.background = "var(--accent)";
+            });
+        });
+    </script>
+</body>
+</html>
