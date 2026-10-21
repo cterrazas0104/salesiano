@@ -144,374 +144,61 @@
         .terminal-block .string { color: #34d399; }
         .terminal-block .comment { color: #64748b; font-style: italic; }
 
-    </style>
-</head>
-<body>
+        .arch-grid { display: flex; align-items: stretch; justify-content: space-between; gap: 1.5vw; margin-top: 2.5vh; width: 100%; }
 
-    <!-- Modal de Zoom del QR -->
-    <div id="qr-zoom-modal" onclick="this.style.display='none'">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https://salesiano.yoresuelvo.com.mx/encuesta" alt="QR Gigante">
-        <h2 style="color: white; border: none; margin-top: 2vh;">salesiano.yoresuelvo.com.mx/encuesta</h2>
-        <p style="color: #94a3b8;">(Haz clic en cualquier parte para volver al dashboard)</p>
-    </div>
-
-    <div id="deck">
-        <!-- 1. PORTADA (3 Min) -->
-        <section class="slide" id="portada" data-duration="3">
-            <h3 style="color: var(--secondary); letter-spacing: 3px;">CESBA Universitario presenta</h3>
-            <h1>Dueños del <span class="highlight">Código</span></h1>
-            <h2>De espectadores a Arquitectos del Futuro</h2>
-            <br>
-            <p style="font-weight: 700; color: var(--primary); font-size: clamp(1.5rem, 3.5vh, 2.2rem);">Mtro. César Gabriel Terrazas Zarazúa</p>
-            <p style="margin-top: 8px; color: var(--accent); font-weight: 600;">Licenciatura en Sistemas Computacionales | Instituto Salesiano</p>
-        </section>
-
-        <!-- 2. EL ROMPEHIELOS (5 Min) -->
-        <section class="slide" id="rompehielos" data-duration="5">
-            <h2>La ilusión de la pantalla</h2>
-            <h3>¿Quién controla la magia por detrás?</h3>
-            <div class="two-columns">
-                <div>
-                    <p style="margin-bottom: 2.5vh;">Todos en este salón saben usar TikTok, jugar Valorant o pedir un Uber. Pero...</p>
-                    <div style="background: rgba(14, 165, 233, 0.1); border-left: 4px solid var(--accent); padding: 2vh 2vw; border-radius: 0 8px 8px 0; margin-bottom: 2.5vh;">
-                        <p style="color: var(--primary); font-style: italic;">"¿Quién puede decirme cuántas operaciones en la memoria RAM y cuántos microsegundos ocurren en el celular entre que tocas la pantalla y el personaje dispara?"</p>
-                    </div>
-                    <ul>
-                        <li><strong>El Estereotipo:</strong> El "hacker" antisocial encerrado tecleando verde sobre negro no existe.</li>
-                        <li><strong>La Realidad:</strong> El mundo ya no busca capturistas de código, busca estrategas y constructores de soluciones masivas.</li>
-                        <li><strong>La Era IA:</strong> La inteligencia artificial redacta código en segundos. El Ingeniero en Sistemas es quien la dirige.</li>
-                    </ul>
-                </div>
-                <div class="comparison" style="flex-direction: column;">
-                    <div class="comp-box">
-                        <h4>El Consumidor</h4>
-                        <p style="font-size: clamp(0.95rem, 2.1vh, 1.25rem);">Pasa 6 horas al día consumiendo aplicaciones creadas por alguien más. Se frustra si la app se cae.</p>
-                    </div>
-                    <div class="comp-box after">
-                        <h4>El Creador (Sistemas CESBA)</h4>
-                        <p style="font-size: clamp(0.95rem, 2.1vh, 1.25rem); color: #f8fafc;">Entiende la arquitectura, domina bases de datos, conecta servidores y despliega la solución.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. LA ARQUITECTURA (7 min) -->
-        <section class="slide" id="arquitectura" data-duration="7">
-            <h2>El Poder de Construir</h2>
-            <h3>Anatomía de una solución automatizada real</h3>
-            <p style="margin-bottom: 2vh;">Caso real de gobierno: Cero filas, cero papel, cero intervención humana.</p>
+        /* ==========================================
+           DISEÑO RESPONSIVO (MÓVILES Y TABLETS)
+           ========================================== */
+        @media (max-width: 900px) {
+            .slide { 
+                justify-content: flex-start; 
+                padding: 6vh 6vw 12vh 6vw; 
+                overflow-y: auto; 
+                height: 100vh;
+            }
+            .two-columns { 
+                grid-template-columns: 1fr; 
+                gap: 3vh; 
+            }
+            .comparison { flex-direction: column; }
+            .arch-grid { 
+                flex-direction: column; 
+                gap: 2vh; 
+            }
+            .arch-grid > div { width: 100% !important; }
+            .arch-grid > div.arrow { transform: rotate(90deg); margin: 0.5vh auto; font-size: 2rem; }
             
-            <div style="display: flex; align-items: stretch; justify-content: space-between; gap: 1.5vw; margin-top: 2.5vh; width: 100%;">
-                <div class="comp-box" style="text-align: center;">
-                    <span style="font-size: 3rem; display: block; margin-bottom: 1vh;">📱</span>
-                    <h4>1. Front-End (El Usuario)</h4>
-                    <p style="font-size: 1rem;">Escanea el código QR y llena un formulario web responsivo desde su celular.</p>
-                </div>
-                <div style="display: flex; align-items: center; color: var(--accent); font-size: 2rem; font-weight: bold;">➔</div>
-                
-                <div class="comp-box" style="text-align: center;">
-                    <span style="font-size: 3rem; display: block; margin-bottom: 1vh;">⚙️</span>
-                    <h4>2. API y Servidor (Backend)</h4>
-                    <p style="font-size: 1rem;">Un script en la nube (Serverless) recibe el JSON, valida los datos y aplica reglas de negocio.</p>
-                </div>
-                <div style="display: flex; align-items: center; color: var(--accent); font-size: 2rem; font-weight: bold;">➔</div>
-
-                <div class="comp-box after" style="text-align: center;">
-                    <span style="font-size: 3rem; display: block; margin-bottom: 1vh;">🗄️</span>
-                    <h4 style="color: #38bdf8;">3. Base de Datos y Trigger</h4>
-                    <p style="font-size: 1rem; color: #cbd5e1;">Se inyecta el registro en SQL/NoSQL y se dispara un PDF validado por correo al instante.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. LABORATORIO EN VIVO (15 Min) -->
-        <section class="slide" id="laboratorio-vivo" data-duration="15">
-            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                <div>
-                    <h2>Cuarto de Máquinas en Vivo</h2>
-                    <h3>Sincronización de Base de Datos y APIs en Tiempo Real</h3>
-                </div>
-                <span style="font-size: clamp(0.85rem, 1.8vh, 1.1rem); color: var(--secondary); font-weight: 600;">💡 Tip: Clic en el QR para Zoom</span>
-            </div>
-
-            <div class="live-lab-grid">
-                <div class="qr-panel">
-                    <div>
-                        <div style="font-size: clamp(0.9rem, 2vh, 1.2rem); font-weight: 700; color: #e0f2fe; margin-bottom: 0.8vh;">1. ESCANEA Y ENVÍA TU PETICIÓN AL SERVIDOR</div>
-                        <div class="domain-pill">salesiano.yoresuelvo.com.mx/encuesta</div>
-                    </div>
-
-                    <div class="qr-card-white" onclick="document.getElementById('qr-zoom-modal').style.display='flex'">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https://salesiano.yoresuelvo.com.mx/encuesta" alt="QR Encuesta Sistemas">
-                    </div>
-
-                    <div class="counter-badge">
-                        <div id="live-counter" class="counter-number">0</div>
-                        <div style="font-size: clamp(0.75rem, 1.6vh, 0.95rem); text-transform: uppercase; letter-spacing: 1px; color: #bae6fd; margin-top: 4px;">Peticiones (POST) Recibidas</div>
-                    </div>
-                </div>
-
-                <div class="sheet-panel">
-                    <div class="sheet-toolbar">
-                        <div style="font-weight: 700; color: var(--primary); font-size: clamp(0.9rem, 2vh, 1.15rem);">
-                            <span class="live-dot"></span>JSON Feed — <span id="sync-status" style="color: #10b981; font-weight: normal; font-size: 0.9em;">Listening...</span>
-                        </div>
-                        <div style="display: flex; gap: 8px;">
-                            <button onclick="sincronizarHojaDeCalculo()" style="background: #1e293b; border: 1px solid #334155; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; color: #94a3b8;">🔄 Fetch API</button>
-                            <button onclick="simularEntradaDemo()" style="background: #1e293b; border: 1px solid #334155; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; color: #94a3b8;" title="Mock Data">+ Mock Data</button>
-                        </div>
-                    </div>
-
-                    <div class="sheet-table-scroll" id="scroll-container-tabla">
-                        <table class="live-table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 8%;">ID</th>
-                                    <th style="width: 26%;">1. Stack / Lenguaje</th>
-                                    <th style="width: 26%;">2. Interés DEV</th>
-                                    <th style="width: 40%;">3. Problema a resolver (App)</th>
-                                </tr>
-                            </thead>
-                            <tbody id="live-sheet-body">
-                                <tr>
-                                    <td colspan="4" style="text-align: center; padding: 6vh 2vw; color: #475569; font-style: italic; font-family: monospace;">
-                                        > Esperando conexión de clientes_
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="sheet-footer">
-                        <div style="font-size: clamp(0.8rem, 1.7vh, 1rem); color: #94a3b8; line-height: 1.3;">
-                            <strong>Paso 2:</strong> Vamos a inyectar esta data en un modelo de IA Generativa.
-                        </div>
-                        <button id="btn-magic-gemini" class="btn-gemini-magic" onclick="copiarPromptYAbrirGemini()">
-                            <span>✨ Compilar Dashboard con IA</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. EL PROMPT (5 Min) -->
-        <section class="slide" id="el-prompt" data-duration="5">
-            <h2>El Prompt del Arquitecto</h2>
-            <h3>Codificando a través de instrucciones (NLP)</h3>
-            <p style="margin-bottom: 2vh;">El Ingeniero de Software de hoy programa dándole directrices a la IA. Aquí está nuestra "compilación":</p>
+            .live-lab-grid { 
+                grid-template-columns: 1fr; 
+                height: auto; 
+                display: flex; 
+                flex-direction: column; 
+                gap: 3vh; 
+            }
+            .qr-panel { 
+                flex-direction: row; 
+                flex-wrap: wrap; 
+                justify-content: center; 
+                padding: 3vh; 
+                gap: 15px; 
+            }
+            .qr-card-white img { 
+                height: 18vh; 
+                width: 18vh; 
+            }
+            .sheet-panel { 
+                min-height: 50vh; 
+            }
+            .sheet-toolbar { flex-direction: column; gap: 10px; align-items: flex-start; }
+            .sheet-footer { flex-direction: column; text-align: center; }
             
-            <div class="terminal-block">
-                <span class="keyword">const</span> role = <span class="string">"Arquitecto de Software Senior y Líder Técnico"</span>;<br><br>
-                <span class="keyword">const</span> context = <span class="string">"Analiza los datos técnicos de los estudiantes de preparatoria del Instituto Salesiano."</span>;<br><br>
-                <span class="comment">// INSTRUCCIÓN PRINCIPAL</span><br>
-                <span class="keyword">function</span> buildDashboard(data) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Genera ÚNICAMENTE un archivo HTML (Single-File) con Tailwind CSS (Dark Mode bg-slate-900) y Chart.js. Muestra gráficas del Stack Tecnológico, Interés DEV y agrupa las ideas de Apps."</span>;<br>
-                }
-            </div>
-        </section>
-
-        <!-- 6. CIERRE (5 Min) -->
-        <section class="slide" id="cierre" data-duration="5">
-            <h2 style="border:none;">El mundo necesita constructores</h2>
-            
-            <p style="font-size: clamp(1rem, 2.5vh, 1.45rem); line-height: 1.6; color: var(--secondary); margin-bottom: 3vh;">"En la <strong>Licenciatura en Sistemas Computacionales de CESBA</strong> no les vamos a enseñar a usar Excel ni a ser un usuario promedio. Les vamos a enseñar a dominar bases de datos, a crear aplicaciones con lógica pura y a ser los dueños de los servidores donde corre el mundo. Mi habilidad más fuerte hoy no es teclear rápido, es saber cómo armar el rompecabezas arquitectónico y dirigir a la IA para que lo construya a la velocidad de la luz."</p>
-
-            <div style="background: rgba(14, 165, 233, 0.1); padding: 4vh 4vw; border-radius: 12px; border-left: 8px solid var(--accent); margin-bottom: 2vh;">
-                <p style="font-weight: 600; color: var(--primary); font-style: italic; font-size: clamp(1.2rem, 3vh, 1.8rem); text-align: center;">"La Inteligencia Artificial no va a reemplazar a los Ingenieros en Sistemas. Los Ingenieros en Sistemas que dominen la Inteligencia Artificial van a construir el mañana."</p>
-            </div>
-            
-            <br>
-            <h3 style="color: var(--accent-glow); margin-top: 1vh;">¡Inscríbanse a CESBA! | Mtro. César Gabriel Terrazas</h3>
-        </section>
-    </div>
-
-    <!-- Controles -->
-    <div class="bottom-controls">
-        <div id="slide-timer">00:00 / 40:00</div>
-        <div style="color: var(--border-color);">|</div>
-        <div id="slide-counter-label" style="font-size: clamp(0.85rem, 1.8vh, 1.1rem); color: var(--primary);">1 / 6</div>
-        <div style="color: var(--border-color);">|</div>
-        <div style="font-size: clamp(0.85rem, 1.8vh, 1.1rem); font-weight: 400;">⬅ Navegación ➡</div>
-    </div>
-
-    <script>
-        // API Oficial Conectada
-        const LIVE_SURVEY_API_URL = "https://script.google.com/macros/s/AKfycbzO5m8pC0fdbdDxfj-xvqb-uzEcFkCwFHlv-y4HEdKBpUkA9klF9D3oziI6ShcYcLw/exec"; 
-
-        let respuestasEnVivo = [];
-        let ultimoTotal = -1;
-
-        async function sincronizarHojaDeCalculo() {
-            const statusEl = document.getElementById('sync-status');
-            try {
-                const res = await fetch(`${LIVE_SURVEY_API_URL}?accion=obtener&t=${Date.now()}`, {
-                    method: 'GET',
-                    redirect: 'follow'
-                });
-                const data = await res.json();
-                if (data && Array.isArray(data.filas)) {
-                    respuestasEnVivo = data.filas;
-                    actualizarTablaYContador();
-                    const ahora = new Date().toLocaleTimeString('es-MX', { hour12: false });
-                    statusEl.innerText = `Connected (${ahora})`;
-                    statusEl.style.color = "#10b981";
-                }
-            } catch (err) {
-                console.warn("Error al sincronizar:", err);
-                statusEl.innerText = "Reconnecting...";
-                statusEl.style.color = "#f59e0b";
+            .bottom-controls { 
+                justify-content: center; 
+                width: 94vw; 
+                left: 3vw; 
+                right: 3vw; 
+                bottom: 2vh; 
+                padding: 10px; 
             }
-        }
-
-        function actualizarTablaYContador() {
-            const total = respuestasEnVivo.length;
-            const counterEl = document.getElementById('live-counter');
-            const tbody = document.getElementById('live-sheet-body');
-
-            if (total !== ultimoTotal) {
-                counterEl.innerText = total;
-                counterEl.style.transform = "scale(1.25)";
-                setTimeout(() => counterEl.style.transform = "scale(1)", 200);
-
-                if (total === 0) {
-                    tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; padding: 6vh 2vw; color: #475569; font-style: italic; font-family: monospace;">> DB Empty. Waiting for requests...</td></tr>`;
-                } else {
-                    tbody.innerHTML = respuestasEnVivo.map((r, idx) => `
-                        <tr class="${idx === total - 1 ? 'new-row-flash' : ''}">
-                            <td style="font-family: monospace;">[${idx + 1}]</td>
-                            <td>${r.p1 || ''}</td>
-                            <td>${r.p2 || ''}</td>
-                            <td><i>"${r.p3 || ''}"</i></td>
-                        </tr>
-                    `).join('');
-                }
-
-                const container = document.getElementById('scroll-container-tabla');
-                container.scrollTop = container.scrollHeight;
-                ultimoTotal = total;
-            }
-        }
-
-        // Mock data adaptada
-        function simularEntradaDemo() {
-            const p1Opciones = ["A) Python", "B) JavaScript", "C) C++ / Java"];
-            const p2Opciones = ["A) Videojuegos y Apps", "B) Inteligencia Artificial", "C) Ciberseguridad"];
-            const p3Ejemplos = [
-                "Una app que me organice la tarea sola con IA.",
-                "Un videojuego tipo RPG en línea.",
-                "Un bot para saber si me van a hackear mis cuentas.",
-                "Aplicación para adoptar perritos en mi ciudad.",
-                "Un sistema de finanzas para que me rinda mi domingo."
-            ];
-            respuestasEnVivo.push({
-                p1: p1Opciones[Math.floor(Math.random() * p1Opciones.length)],
-                p2: p2Opciones[Math.floor(Math.random() * p2Opciones.length)],
-                p3: p3Ejemplos[Math.floor(Math.random() * p3Ejemplos.length)]
-            });
-            actualizarTablaYContador();
-        }
-
-        function copiarPromptYAbrirGemini() {
-            const total = respuestasEnVivo.length;
-            let bloqueDatos = "";
-
-            if (total > 0) {
-                bloqueDatos = "\n\nDATOS CRUDOS RECOLECTADOS (JSON FORMAT):\n" +
-                    respuestasEnVivo.map((r, i) => `{ "id": ${i+1}, "Lenguaje": "${r.p1}", "Interes": "${r.p2}", "IdeaApp": "${r.p3}" }`).join('\n');
-            } else {
-                bloqueDatos = "\n\n(No hay datos inyectados aún).";
-            }
-
-            const megaPrompt = `[ROL] Actúa como un Arquitecto de Software Senior y Analista de Datos experto en Frontend.
-
-[CONTEXTO] Estoy dando una clase muestra a estudiantes de preparatoria del Instituto Salesiano para que se inscriban a la Licenciatura en Sistemas Computacionales de CESBA. Hicimos un query en vivo a la base de datos para conocer su perfil técnico y sus ideas de apps.
-
-[INSTRUCCIÓN] Analiza el JSON adjunto de los alumnos:
-1. Extrae los porcentajes del Lenguaje Favorito y el Interés de Desarrollo.
-2. Haz NLP (Procesamiento de Lenguaje) rápido sobre las Ideas de App para detectar los 2 problemas principales que quieren resolver los jóvenes.
-
-[FORMATO] ESTRICTO: NO generes texto plano. Genera ÚNICAMENTE UN ARCHIVO HTML COMPLETO (Single-File) que sea un "Dashboard de Ingeniería Tech".
-Especificaciones técnicas:
-- Usa HTML5 válido.
-- Usa Tailwind CSS (vía CDN) con Tema Oscuro ESTRICTO (fondo bg-slate-950 o bg-gray-900).
-- Usa Chart.js (vía CDN) para generar 2 gráficas animadas:
-  a) Una gráfica de Radar o Dona para el Lenguaje Favorito.
-  b) Una gráfica de Barras Horizontales para el Interés DEV.
-- Incluye un Header estilo terminal de comandos: "CESBA.sys // Perfil Generación 2026 // Status: ONLINE".
-- Muestra un panel resumen (tipo cards) con las ideas de apps más locas/interesantes.
-- El código final debe verse ultra profesional, limpio, y directamente copiable y funcional.${bloqueDatos}`;
-
-            navigator.clipboard.writeText(megaPrompt).then(() => {
-                const btn = document.getElementById('btn-magic-gemini');
-                btn.innerHTML = "✅ ¡Prompt Copiado! Abriendo Gemini...";
-                btn.style.background = "#10b981";
-                
-                setTimeout(() => {
-                    window.open("https://gemini.google.com/app", "_blank");
-                    btn.innerHTML = "✨ Compilar Dashboard con IA";
-                    btn.style.background = "linear-gradient(135deg, #0ea5e9, #3b82f6)";
-                }, 900);
-            });
-        }
-
-        sincronizarHojaDeCalculo();
-        setInterval(sincronizarHojaDeCalculo, 3000);
-
-        // =========================================================================
-        // NAVEGACIÓN Y CRONÓMETRO GENERAL (40 MINUTOS TOTAL)
-        // =========================================================================
-        const deck = document.getElementById('deck');
-        const slides = document.querySelectorAll('.slide');
-        const timerDisplay = document.getElementById('slide-timer');
-        const slideCounterLabel = document.getElementById('slide-counter-label');
-        let currentSlide = 0;
-        
-        // Timer de la presentación global
-        let presentationStartTime = Date.now();
-
-        deck.addEventListener('scroll', () => {
-            const newIndex = Math.round(deck.scrollLeft / window.innerWidth);
-            if (newIndex !== currentSlide && newIndex >= 0 && newIndex < slides.length) {
-                currentSlide = newIndex;
-                slideCounterLabel.textContent = `${currentSlide + 1} / ${slides.length}`;
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if(e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
-
-            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
-                currentSlide++;
-                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
-                slideCounterLabel.textContent = `${currentSlide + 1} / ${slides.length}`;
-            } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
-                currentSlide--;
-                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
-                slideCounterLabel.textContent = `${currentSlide + 1} / ${slides.length}`;
-            }
-        });
-
-        function updateTimer() {
-            const now = Date.now();
-            const diff = now - presentationStartTime;
-            const minutesElapsed = Math.floor(diff / 60000);
-            const secondsElapsed = Math.floor((diff % 60000) / 1000);
-            const formatTime = (num) => num.toString().padStart(2, '0');
-            
-            // Límite global: 40 mins
-            timerDisplay.textContent = `${formatTime(minutesElapsed)}:${formatTime(secondsElapsed)} / 40:00`;
-
-            if (minutesElapsed >= 40) {
-                timerDisplay.style.color = '#ef4444'; 
-            } else if (minutesElapsed >= 35) {
-                timerDisplay.style.color = '#f59e0b'; 
-            } else {
-                timerDisplay.style.color = '#94a3b8'; 
-            }
-        }
-
-        setInterval(updateTimer, 1000);
-        updateTimer();
-    </script>
-</body>
-</html>
+            h1 { font-size: clamp(2.2rem, 5vh, 3.5rem); }
+            h
