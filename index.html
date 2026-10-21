@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistemas Computacionales CESBA | Mtro. César Gabriel Terrazas</title>
@@ -74,19 +74,23 @@
         strong { color: var(--primary); }
 
         .comparison { display: flex; gap: 2vw; margin-top: 2vh; }
-        .comp-box { background: var(--card-bg); padding: 2.5vh 2vw; border-radius: 8px; flex: 1; border-left: 4px solid var(--border-color); box-shadow: 0 10px 25px rgba(0,0,0,0.3); z-index: 2; position: relative; }
+        .comp-box { background: var(--card-bg); padding: 2.5vh 2vw; border-radius: 8px; flex: 1; border-left: 4px solid var(--border-color); box-shadow: 0 10px 25px rgba(0,0,0,0.3); z-index: 2; position: relative; overflow: hidden; }
         .comp-box.after { border-left-color: var(--accent); background: rgba(14, 165, 233, 0.05); }
 
-        /* PORTADA CON FONDO HACKER */
+        /* FONDOS DE DIAPOSITIVAS */
         #portada { text-align: center; align-items: center; justify-content: center; background: #0f172a; }
         #portada::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1920&q=80');
             background-size: cover; background-position: center; opacity: 0.15; z-index: 1;
         }
-        #portada h2 { border: none; font-weight: 400; max-width: 950px; margin: 0 auto 1.2em auto; color: var(--secondary); }
-        
-        /* CIERRE CON FONDO SERVIDORES */
+
+        #el-prompt::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1515228699478-fbb6a71e21b7?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center; opacity: 0.08; z-index: 1;
+        }
+
         #cierre { background: #0f172a; }
         #cierre::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -138,6 +142,7 @@
         .terminal-block .comment { color: #64748b; font-style: italic; }
 
         .arch-grid { display: flex; align-items: stretch; justify-content: space-between; gap: 1.5vw; margin-top: 2.5vh; width: 100%; z-index: 2; position: relative; }
+        .arch-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-size: cover; background-position: center; opacity: 0.15; z-index: 0; }
 
         /* ==========================================
            DISEÑO RESPONSIVO (MÓVILES Y TABLETS)
@@ -267,23 +272,32 @@
             
             <div class="arch-grid">
                 <div class="comp-box" style="text-align: center;">
-                    <span style="font-size: 3rem; display: block; margin-bottom: 1vh;">📱</span>
-                    <h4>1. Front-End (El Usuario)</h4>
-                    <p style="font-size: 1rem;">Escanea el código QR y llena un formulario web responsivo desde su celular.</p>
+                    <div class="arch-bg" style="background-image: url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div style="position: relative; z-index: 1;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 1vh;">📱</span>
+                        <h4>1. Front-End (El Usuario)</h4>
+                        <p style="font-size: 1rem;">Escanea el código QR y llena un formulario web responsivo desde su celular.</p>
+                    </div>
                 </div>
                 <div class="arrow" style="display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 2rem; font-weight: bold;">➔</div>
                 
                 <div class="comp-box" style="text-align: center;">
-                    <span style="font-size: 3rem; display: block; margin-bottom: 1vh;">⚙️</span>
-                    <h4>2. API y Servidor (Backend)</h4>
-                    <p style="font-size: 1rem;">Un script en la nube (Serverless) recibe el JSON, valida los datos y aplica reglas de negocio.</p>
+                    <div class="arch-bg" style="background-image: url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div style="position: relative; z-index: 1;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 1vh;">⚙️</span>
+                        <h4>2. API y Servidor (Backend)</h4>
+                        <p style="font-size: 1rem;">Un script en la nube (Serverless) recibe el JSON, valida los datos y aplica reglas de negocio.</p>
+                    </div>
                 </div>
                 <div class="arrow" style="display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 2rem; font-weight: bold;">➔</div>
 
                 <div class="comp-box after" style="text-align: center;">
-                    <span style="font-size: 3rem; display: block; margin-bottom: 1vh;">🗄️</span>
-                    <h4 style="color: #38bdf8;">3. Base de Datos y Trigger</h4>
-                    <p style="font-size: 1rem; color: #cbd5e1;">Se inyecta el registro en SQL/NoSQL y se dispara un PDF validado por correo al instante.</p>
+                    <div class="arch-bg" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div style="position: relative; z-index: 1;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 1vh;">🗄️</span>
+                        <h4 style="color: #38bdf8;">3. Base de Datos y Trigger</h4>
+                        <p style="font-size: 1rem; color: #cbd5e1;">Se inyecta el registro en SQL/NoSQL y se dispara un PDF validado por correo al instante.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -360,25 +374,27 @@
 
         <!-- 5. EL PROMPT (5 Min) -->
         <section class="slide" id="el-prompt" data-duration="5">
-            <h2>El Prompt del Arquitecto</h2>
-            <h3>Codificando a través de instrucciones (NLP)</h3>
-            <p style="margin-bottom: 2vh;">El Ingeniero de Software de hoy programa dándole directrices a la IA. Aquí está nuestra "compilación":</p>
-            
-            <div class="terminal-block">
-                <span class="keyword">const</span> role = <span class="string">"Arquitecto de Software Senior y Líder Técnico"</span>;<br><br>
-                <span class="keyword">const</span> context = <span class="string">"Analiza los datos técnicos de los estudiantes de preparatoria del Instituto Salesiano."</span>;<br><br>
-                <span class="comment">// INSTRUCCIÓN PRINCIPAL</span><br>
-                <span class="keyword">function</span> buildDashboard(data) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Genera un Dashboard analizando: 1) Pilar Tecnológico Ganador, 2) Perfil de la Generación (Gamer, Altruista, etc.), 3) Inventa un Proyecto Integrador Masivo basado en sus ideas."</span>;<br>
-                }
+            <div style="position: relative; z-index: 2;">
+                <h2>El Prompt del Arquitecto</h2>
+                <h3>Codificando a través de instrucciones (NLP)</h3>
+                <p style="margin-bottom: 2vh;">El Ingeniero de Software de hoy programa dándole directrices a la IA. Aquí está nuestra "compilación":</p>
+                
+                <div class="terminal-block">
+                    <span class="keyword">const</span> role = <span class="string">"Arquitecto de Software Senior y Líder Técnico"</span>;<br><br>
+                    <span class="keyword">const</span> context = <span class="string">"Analiza los datos técnicos de los estudiantes de preparatoria del Instituto Salesiano."</span>;<br><br>
+                    <span class="comment">// INSTRUCCIÓN PRINCIPAL</span><br>
+                    <span class="keyword">function</span> buildDashboard(data) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Genera un Dashboard analizando: 1) Pilar Tecnológico Ganador, 2) Perfil de la Generación (Gamer, Altruista, etc.), 3) Inventa un Proyecto Integrador Masivo basado en sus ideas."</span>;<br>
+                    }
+                </div>
             </div>
         </section>
 
         <!-- 6. CIERRE (5 Min) -->
         <section class="slide" id="cierre" data-duration="5">
-            <h2 style="border:none;">El mundo necesita constructores</h2>
+            <h2 style="border:none; z-index: 2; position: relative;">El mundo necesita constructores</h2>
             
-            <p style="font-size: clamp(1rem, 2.5vh, 1.45rem); line-height: 1.6; color: var(--secondary); margin-bottom: 3vh;">"En la <strong>Licenciatura en Sistemas Computacionales de CESBA</strong> no les vamos a enseñar a usar Excel ni a ser un usuario promedio. Les vamos a enseñar a dominar bases de datos, a crear aplicaciones con lógica pura y a ser los dueños de los servidores donde corre el mundo. Mi habilidad más fuerte hoy no es teclear rápido, es saber cómo armar el rompecabezas arquitectónico y dirigir a la IA para que lo construya a la velocidad de la luz."</p>
+            <p style="font-size: clamp(1rem, 2.5vh, 1.45rem); line-height: 1.6; color: var(--secondary); margin-bottom: 3vh; z-index: 2; position: relative;">"En la <strong>Licenciatura en Sistemas Computacionales de CESBA</strong> no les vamos a enseñar a usar Excel ni a ser un usuario promedio. Les vamos a enseñar a dominar bases de datos, a crear aplicaciones con lógica pura y a ser los dueños de los servidores donde corre el mundo. Mi habilidad más fuerte hoy no es teclear rápido, es saber cómo armar el rompecabezas arquitectónico y dirigir a la IA para que lo construya a la velocidad de la luz."</p>
 
             <div style="background: rgba(14, 165, 233, 0.1); padding: 4vh 4vw; border-radius: 12px; border-left: 8px solid var(--accent); margin-bottom: 2vh; z-index: 2; position: relative; backdrop-filter: blur(5px);">
                 <p style="font-weight: 600; color: var(--primary); font-style: italic; font-size: clamp(1.2rem, 3vh, 1.8rem); text-align: center;">"La Inteligencia Artificial no va a reemplazar a los Ingenieros en Sistemas. Los Ingenieros en Sistemas que dominen la Inteligencia Artificial van a construir el mañana."</p>
